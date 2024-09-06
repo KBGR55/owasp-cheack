@@ -1,6 +1,6 @@
 # Curso de OWASP Top 10: Riesgos en Aplicaciones
 ## Introducción
-Esta es la documentación del proyecto de aplicación vulnerable para el Curso de OWASP Top 10: Riesgos en Aplicaciones de Platzi.
+Esta es la documentación del proyecto de aplicación vulnerable para el Curso de OWASP Top 10.
 
 A continuación encontrarás toda la información necesaria para utilizar este proyecto.
 
@@ -157,30 +157,6 @@ Recuerda terminar el proceso de docker y eliminar los volúmenes cada vez que ca
 - DirBuster
 - NodeJS (para la clase de npm audit)
 
-<details>
-    <summary>Aquí te comparto una lista de tutoriales para instalar tus herramientas de pentesting</summary>
-    <a href="https://platzi.com/new-home/clases/8781-docker-fundamentos/66589-instalacion-de-docker/" target="_blank">Tutorial de instalación de Docker</a></br>
-    <a href="https://platzi.com/blog/como-instalar-burp-suite-en-windows" target="_blank">Tutorial de instalación de Burp Suite en Windows</a></br>
-    <a href="https://platzi.com/blog/como-instalar-burp-suite-en-linux" target="_blank">Tutorial de instalación de Burp Suite en Linux</a></br>
-    <a href="https://platzi.com/blog/como-instalar-burp-suite-en-macos" target="_blank">Tutorial de instalación de Burp Suite en MacOS</a></br>
-    <a href="https://platzi.com/blog/como-instalar-dirbuster" target="_blank">Tutorial de instalación de DirBuster</a>
-</details>
-
-## Recursos adicionales
-### Clases relacionadas
-<details>
-    <summary>A continuación puedes encontrar las clases de los 10 retos del proyecto relacionados al OWASP Top 10.</summary>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68372-broken-access-control/" target="_blank">A01:2021 - Broken Access Control</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68373-cryptographic-failures/" target="_blank">A02:2021 - Cryptographic Failures</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68374-injection/" target="_blank">A03:2021 - Injection</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68375-insecure-design/" target="_blank">A04:2021 - Insecure Design</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68376-security-misconfiguration/" target="_blank">A05:2021 - Security Misconfiguration</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68377-vulnerable-and-outdated-components/" target="_blank">A06:2021 - Vulnerable And Outdated Components</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68378-identification-and-authentication-failures/" target="_blank">A07:2021 - Identification And Authentication Failures</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68368-software-and-data-integrity-failures/" target="_blank">A08:2021 - Software And Data Integrity Failures</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68369-security-logging-and-monitoring-failures/" target="_blank">A09:2021 - Security Logging And Monitoring Failures</a></br>
-    <a href="https://platzi.com/clases/9342-owasp-top-10/68370-server-side-request-forgery/" target="_blank">A10:2021 - Server-Side Request Forgery</a></br>
-</details>
 
 ### Acceso a grafana
 Para acceder a las métricas en grafana puedes seguir los siguientes pasos:
