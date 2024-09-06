@@ -191,5 +191,3 @@ Ha llegado el momento de poner manos a la obra y realizar tus prácticas.
 
 ## Créditos
 Proyecto creado por [Diana Nerd](https://dnrd.dev).
-
-Para el [Curso de OWASP Top 10: Riesgos en Aplicaciones](https://platzi.com/cursos/owasp-top-10) en [Platzi](https://platzi.com/ciberseguridad).
