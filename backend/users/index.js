@@ -6,8 +6,8 @@ module.exports = function (httpRequestsTotal, dbConfig) {
     router.get('/', async (req, res) => {
 
         if (req.session?.role !== 'admin') {
-            httpRequestsTotal.inc({ endpoint: 'users', method: 'GET', status_code: '401'});
-            res.status(401).json({error: 'Unauthorized'});
+            httpRequestsTotal.inc({ endpoint: 'users', method: 'GET', status_code: '401' });
+            res.status(401).json({ error: 'Unauthorized' });
             return;
         }
 
@@ -36,16 +36,16 @@ module.exports = function (httpRequestsTotal, dbConfig) {
                 roles r ON ur.role_id = r.id;
             `);
             console.log(`Database message: ${JSON.stringify(users)}`);
-            
+
             await db.end();
             console.log('Disconnected from database');
-            httpRequestsTotal.inc({ endpoint: 'users', method: 'GET', status_code: '200'});
+            httpRequestsTotal.inc({ endpoint: 'users', method: 'GET', status_code: '200' });
             res.json(users?.rows);
             return;
         } catch (err) {
             console.error(err);
-            httpRequestsTotal.inc({ endpoint: 'users', method: 'GET', status_code: '500'});
-            res.status(500).json({error: 'Internal server error'});
+            httpRequestsTotal.inc({ endpoint: 'users', method: 'GET', status_code: '500' });
+            res.status(500).json({ error: 'Internal server error' });
         }
     })
 
@@ -80,12 +80,12 @@ module.exports = function (httpRequestsTotal, dbConfig) {
             console.log(`Database message: ${JSON.stringify(user)}`);
             await db.end();
             console.log('Disconnected from database');
-            httpRequestsTotal.inc({ endpoint: 'users_id', method: 'GET', status_code: '200'});
+            httpRequestsTotal.inc({ endpoint: 'users_id', method: 'GET', status_code: '200' });
             res.json(user?.rows[0]);
         } catch (err) {
             console.error(err);
-            httpRequestsTotal.inc({ endpoint: 'users_id', method: 'GET', status_code: '500'});
-            res.status(500).json({error: 'Internal server error'});
+            httpRequestsTotal.inc({ endpoint: 'users_id', method: 'GET', status_code: '500' });
+            res.status(500).json({ error: 'Internal server error' });
         }
     })
 
@@ -95,10 +95,15 @@ module.exports = function (httpRequestsTotal, dbConfig) {
             await db.connect();
             const userId = parseInt(req.params.id);
             console.log(`User id: ${userId}`);
-
             const { bio, username, first_name, last_name, email, phone, website } = req.body;
             console.log(`User: ${bio} ${username} ${first_name} ${last_name} ${email} ${phone} ${website}`);
-
+            // Fix: Insecure Design (A04:2021)
+            const usernameRegex = /^[a-zA-Z0-9_]{1,15}$/;
+            if (!usernameRegex.test(website)) {
+                res.status(400).json({ error: 'Invalid linkedin username' });
+                return;
+            }
+            
             const user = await db.query(`
             UPDATE
                 users u
@@ -127,12 +132,12 @@ module.exports = function (httpRequestsTotal, dbConfig) {
             await db.end();
             console.log('Disconnected from database');
 
-            httpRequestsTotal.inc({ endpoint: 'users_id', method: 'POST', status_code: '200'});
+            httpRequestsTotal.inc({ endpoint: 'users_id', method: 'POST', status_code: '200' });
             res.json({ message: 'User updated' });
         } catch (err) {
             console.error(err);
-            httpRequestsTotal.inc({ endpoint: 'users_id', method: 'POST', status_code: '500'});
-            res.status(500).json({error: 'Internal server error'});
+            httpRequestsTotal.inc({ endpoint: 'users_id', method: 'POST', status_code: '500' });
+            res.status(500).json({ error: 'Internal server error' });
         }
     });
 
@@ -156,12 +161,12 @@ module.exports = function (httpRequestsTotal, dbConfig) {
             console.log(`Database message: ${JSON.stringify(payments)}`);
             await db.end();
             console.log('Disconnected from database');
-            httpRequestsTotal.inc({ endpoint: 'users_id_payments', method: 'GET', status_code: '200'});
+            httpRequestsTotal.inc({ endpoint: 'users_id_payments', method: 'GET', status_code: '200' });
             res.json(payments?.rows);
         } catch (err) {
             console.error(err);
-            httpRequestsTotal.inc({ endpoint: 'users_id_payments', method: 'GET', status_code: '500'});
-            res.status(500).json({error: 'Internal server error'});
+            httpRequestsTotal.inc({ endpoint: 'users_id_payments', method: 'GET', status_code: '500' });
+            res.status(500).json({ error: 'Internal server error' });
         }
     })
 
@@ -181,13 +186,13 @@ module.exports = function (httpRequestsTotal, dbConfig) {
             `, [userId, amount, date, description]);
             console.log(`Database message: ${JSON.stringify(result)}`);
             await db.end();
-            httpRequestsTotal.inc({ endpoint: 'users_id_payments', method: 'POST', status_code: '200'});
+            httpRequestsTotal.inc({ endpoint: 'users_id_payments', method: 'POST', status_code: '200' });
             console.log('Disconnected from database');
-            res.json({message: 'Payment added'});
+            res.json({ message: 'Payment added' });
         } catch (err) {
             console.error(err);
-            httpRequestsTotal.inc({ endpoint: 'users_id_payments', method: 'POST', status_code: '500'});
-            res.status(500).json({error: 'Internal server error'});
+            httpRequestsTotal.inc({ endpoint: 'users_id_payments', method: 'POST', status_code: '500' });
+            res.status(500).json({ error: 'Internal server error' });
         }
     })
 
@@ -213,12 +218,12 @@ module.exports = function (httpRequestsTotal, dbConfig) {
             console.log(`Database message: ${JSON.stringify(courses)}`);
             await db.end();
             console.log('Disconnected from database');
-            httpRequestsTotal.inc({ endpoint: 'users_id_courses', method: 'GET', status_code: '200'});
+            httpRequestsTotal.inc({ endpoint: 'users_id_courses', method: 'GET', status_code: '200' });
             res.json(courses?.rows);
         } catch (err) {
             console.error(err);
-            httpRequestsTotal.inc({ endpoint: 'users_id_courses', method: 'GET', status_code: '500'});
-            res.status(500).json({error: 'Internal server error'});
+            httpRequestsTotal.inc({ endpoint: 'users_id_courses', method: 'GET', status_code: '500' });
+            res.status(500).json({ error: 'Internal server error' });
         }
     })
 
