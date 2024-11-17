@@ -99,11 +99,22 @@ module.exports = function (httpRequestsTotal, dbConfig) {
             console.log(`User: ${bio} ${username} ${first_name} ${last_name} ${email} ${phone} ${website}`);
             // Fix: Insecure Design (A04:2021)
             const usernameRegex = /^[a-zA-Z0-9_]{1,15}$/;
-            if (!usernameRegex.test(website)) {
-                res.status(400).json({ error: 'Invalid linkedin username' });
-                return;
+            if (!usernameRegex.test(username)) {
+                return res.status(400).json({ error: 'Invalid username. Only alphanumeric characters and underscores are allowed.' });
             }
-            
+
+            // Validación de URL del sitio web
+            const websiteRegex = /^(https?:\/\/)?([\w\-]+\.)+[a-zA-Z]{2,6}(\/[\w\-]*)*$/;
+            if (website && !websiteRegex.test(website)) {
+                return res.status(400).json({ error: 'Invalid website URL.' });
+            }
+
+            // Validación de dirección de correo electrónico
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailRegex.test(email)) {
+                return res.status(400).json({ error: 'Invalid email address.' });
+            }
+
             const user = await db.query(`
             UPDATE
                 users u
