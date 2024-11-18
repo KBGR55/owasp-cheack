@@ -1,8 +1,17 @@
 const express = require('express');
 const pg = require('pg');
 const router = express.Router();
+const expressRateLimit = require('express-rate-limit');//Fix Identification and Authentication Failures (A07:2021)
+
+const limiter = expressRateLimit({ 
+    windowMs: 1000 * 60 * 60 * 24, // 24 horas
+    max: 3, // máximo de 3 solicitudes
+    message: 'Too many requests from this IP, please try again after 24 hours' 
+});
+
 
 module.exports = function (httpRequestsTotal, dbConfig) {
+    router.use(limiter);//Fix Identification and Authentication Failures (A07:2021)
     router.get('/', async (req, res) => {
         if (req.session?.role !== 'admin') {
             httpRequestsTotal.inc({ endpoint: 'users', method: 'GET', status_code: '401'});
