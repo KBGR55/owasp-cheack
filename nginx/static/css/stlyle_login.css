@@ -1,0 +1,86 @@
+.login-screen {
+    height: 400px;
+    width: 600px;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.app-title {
+    text-align: center;
+    color: #777;
+    margin: 25px;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.control-group {
+
+    margin-bottom: 15px;
+}
+
+input {
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 450px;
+    transition: border .5s;
+}
+
+input:focus {
+    border: 2px solid #0f054c;
+    box-shadow: none;
+}
+
+.btn {
+    border: 2px solid transparent;
+    background: #0f054c;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 10px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 450px;
+    margin: 0 auto;
+}
+
+.btn:hover {
+    border: none;
+    background-color: #6e698f;
+}
+
+.login-link {
+    font-size: 12px;
+    color: #444;
+    display: block;
+    margin-top: 12px;
+}
+
+.modal .modal-body {
+    font-size: 16px;
+}
+
+.modal .alert-danger {
+    display: flex;
+    align-items: center;
+}
+
+.modal .alert-danger i {
+    margin-right: 10px;
+}
+
+.modal .modal-header .modal-title {
+    color: #0f054c !important; 
+}
