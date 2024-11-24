@@ -5,7 +5,7 @@ const expressRateLimit = require('express-rate-limit');//Fix Identification and 
 
 const limiter = expressRateLimit({ 
     windowMs: 1000 * 60 * 60 * 24, // 24 horas
-    max: 3, // máximo de 3 solicitudes
+    max: 35, // máximo de 35 solicitudes
     message: 'Too many requests from this IP, please try again after 24 hours' 
 });
 

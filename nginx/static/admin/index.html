@@ -1,97 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Learning Platform - Admin Panel</title>
+    <link rel="shortcut icon" href="/images/favicon.png" type="">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/responsive.css" rel="stylesheet" />
 </head>
+
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/profile">Profile</a>
-    </nav>
-    <h1>Admin</h1>
-    <div>
-        <p>Here you can manage the platform.</p>
-        <p>Feel free to explore the platform and manage different things.</p>
-        <p>Happy Managing!</p>
-    </div>
-    <p id="error"></p>
-    <div id="users"></div>
-    <script>
-        const usersEl = document.getElementById('users');
-        const errorEl = document.getElementById('error');
+    <div class="hero_area">
+        <div class="hero_bg_box">
+            <div class="bg_img_box">
+                <img src="/images/hero-bg.png" alt="">
+            </div>
+        </div>
+        <!-- header section strats -->
+        <header class="header_section">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <a class="navbar-brand" href="/">
+                        <span>
+                            Learning Platform
+                        </span>
+                    </a>
 
-        errorEl.addEventListener('click', () => {
-            errorEl.innerText = '';
-        });
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class=""> </span>
+                    </button>
 
-        // fetch users and populate list
-        const fetchUsers = async () => {
-            console.log('Fetching users...');
-            console.log(`Cookies: ${document.cookie}`);
-            const session = document.cookie.split(';').find(c => {
-                console.log(`Cookie: ${c}`);
-                return c.includes('main_session');
-            });
-            console.log(`Session: ${session}`);
-
-            if (!session) {
-                // redirect to logout
-                window.location.href = '/logout';
-            }
-
-            fetch('/api/users', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Cookie': session
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Users fetched');
-                    return response.json();
-                } else {
-                    console.log('Users fetch failed');
-                    throw new Error('Users fetch failed');
-                }
-            })
-            .then(users => {
-                console.log('Users:', users);
-                users.forEach(user => {
-                    const div = document.createElement('div');
-                    /*
-                        show as div fields: userId, username, first_name, last_name, email, phone, website
-                        show as link actions: payments and courses
-                    */
-                    div.innerHTML = `
-                        <div style="margin-bottom: 24px; border: 1px; border-radius: 8px;">
-                            <div>
-                                <p>Username: ${user.username}</p>
-                                <p>First name: ${user.first_name}</p>
-                                <p>Last name: ${user.last_name}</p>
-                                <p>Email: ${user.email}</p>
-                                <p>Phone: ${user.phone}</p>
-                                <p>LinkedIn: ${user.website}</p>
-                            </div>
-                            <div>
-                                <a href="/payments/${user.id}">Payments</a>
-                                <a href="/courses/${user.id}">Courses</a>
-                            </div>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav  ">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about"> About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile" href="/profile">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="logout" href="/logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- end header section -->
+        <section class="about_section layout_padding">
+            <div class="container  ">
+                <div class="heading_container heading_center">
+                    <h2> Available users <span>Users</span></h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="detail-box">
+                            <h3> Admin </h3>
+                            <p>Here you can manage the platform.<br /> Feel free to explore the platform and manage
+                                different things.</p>
+                            <a href="/">Happy Managing!</a>
                         </div>
-                    `;
-                    usersEl.appendChild(div);
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                errorEl.innerText = error;
-            });
-        };
-
-        fetchUsers();
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="img-box">
+                            <img src="/images/users-img.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="team_section layout_padding">
+            <div class="container-fluid">
+                <div class="heading_container heading_center">
+                    <h2 class="">User <span>Lists</span> </h2>
+                </div>
+                <div class="team_container">
+                    <div id="users" class="row justify-content-center align-items-center">
+                    </div>
+                </div>
+                <p id="error"></p>
+            </div>
+        </section>
+    </div>
+    <section class="info_section layout_padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 info_col">
+                    <div class="info_contact">
+                        <h4> Address </h4>
+                        <div class="contact_link_box">
+                            <a href="">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <span> Location</span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <span> karen.b.gonzaga@unl.edu.ec </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info_social">
+                        <a href="https://www.linkedin.com/in/kbgr55" target="_blank">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com/karen_brigith/profilecard/?igsh=MWlvZGprZ2w0bmR5bQ=="
+                            target="_blank">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 info_col">
+                    <div class="info_detail">
+                        <h4> Info </h4>
+                        <p> This project is part of an internship at Platzi and is under development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end info section -->
+    <!-- footer section -->
+    <section class="footer_section">
+        <div class="container">
+            <p> &copy; <span id="displayYear"></span> Powered by Platzi. <a
+                    href="https://github.com/KBGR55/owasp-cheack.git" target="_blank">GitHub Repository</a> </p>
+        </div>
+    </section>
+    <!-- footer section -->
+    <script src="/js/script_admin.js"></script>
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"> </script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"> </script>
+    <script type="text/javascript" src="/js/custom.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
 </body>
+
 </html>

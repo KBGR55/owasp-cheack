@@ -3,7 +3,6 @@ const loginEl = document.getElementById('login');
 const profileEl = document.getElementById('profile');
 const logoutEl = document.getElementById('logout');
 
-// if user is logged in, show profile link and hide login link
 if (document.cookie.includes('main_session')) {
     loginEl.style.display = 'none';
 } else {
@@ -11,7 +10,6 @@ if (document.cookie.includes('main_session')) {
     logoutEl.style.display = 'none';
 }
 
-// fetch courses and populate list
 fetch('/api/courses', {
     method: 'GET',
     headers: {

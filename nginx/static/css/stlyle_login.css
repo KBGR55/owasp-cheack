@@ -6,7 +6,33 @@
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
 
+form {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.control-group-2 {
+    display: flex;
+    flex-direction: column;
+}
 .app-title {
     text-align: center;
     color: #777;
@@ -18,11 +44,10 @@
 }
 
 .control-group {
-
     margin-bottom: 15px;
 }
 
-input {
+input,textarea{
     text-align: center;
     background-color: #ECF0F1;
     border: 2px solid transparent;
@@ -30,11 +55,12 @@ input {
     font-size: 16px;
     font-weight: 200;
     padding: 10px 0;
-    width: 450px;
+    width: 100%;
+    box-sizing: border-box; 
     transition: border .5s;
 }
 
-input:focus {
+input:focus, textarea:focus {
     border: 2px solid #0f054c;
     box-shadow: none;
 }
@@ -52,7 +78,8 @@ input:focus {
     box-shadow: none;
     transition: 0.25s;
     display: block;
-    width: 450px;
+    width: 100%; 
+    box-sizing: border-box; 
     margin: 0 auto;
 }
 
